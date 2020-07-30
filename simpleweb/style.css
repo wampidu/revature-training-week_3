@@ -1,4 +1,4 @@
-/* BASIC SELECTORS */
+BASIC SELECTORS
 
 /* wildcard or omni selector */
 * {
@@ -36,5 +36,42 @@ section p {
 
 /* parent-child */
 section > p {
-  color: #00ff00;
+  color: #00ff00 !important;
 }
+
+/* adjecent sibling */
+section + section {
+ color: yellow;
+}
+
+/* any sibling */
+section ~ section {
+  color: orange;
+}
+
+/* PSEUDO CLASS */
+h1:hover {
+  color: tomato;
+}
+
+a:link {
+  color: magenta;
+}
+
+:active {
+
+}
+
+:blur {
+
+}
+
+:focus {
+
+}
+
+/* nth-type , nth-child, pseudo-element */
+
+/* (0,0,0,0) 1 = tag, 10 = class, 100 = id, 1000 = !important specificity guide */
+
+
