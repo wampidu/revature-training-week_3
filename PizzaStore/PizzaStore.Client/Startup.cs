@@ -28,8 +28,22 @@ namespace PizzaStore.Client
             services.AddControllersWithViews();
             services.AddDbContext<PizzaStoreDbContext>(options =>
             {
-              options.UseSqlServer("<connection string>");
+              options.UseSqlServer(Configuration.GetConnectionString("mssql"));//recommended
+              //options.UseSqlServer(Configuration["connectionstrings:mssql"]);//all other configurations
             });
+            services.AddCors(options => 
+            {
+              options.AddDefaultPolicy(poli => 
+              {
+                poli.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+              });
+
+              options.AddPolicy("private", poli =>
+              {
+                poli.WithOrigins("microsoft.com").WithMethods("get", "post");
+              });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,14 +59,18 @@ namespace PizzaStore.Client
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseCors(); //without any arguments, will implement the DEFAULT policy, global policy
+
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+            app.UseEndpoints(endpoints => //global routing
             {
                 endpoints.MapControllerRoute(
                     name: "default",
