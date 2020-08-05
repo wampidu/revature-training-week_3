@@ -8,8 +8,8 @@ using PizzaStore.Storing;
 
 namespace PizzaStore.Client.Controllers
 {
-  [Route("/[controller]")] //either use CONTROLLER ROUTING or GLOBAL ROUTING {[NOT BOTH]}
-  [EnableCors("private")] //CORS is not a P1 req, dont stress on it
+  [Route("/order")] //either use CONTROLLER ROUTING or GLOBAL ROUTING {[NOT BOTH]}
+  //[EnableCors("private")] //CORS is not a P1 req, dont stress on it
     public class OrderController : Controller
     {
       private readonly PizzaStoreDbContext _db;
@@ -19,7 +19,7 @@ namespace PizzaStore.Client.Controllers
         _db = dbContext;
       }
 
-      [Route("/home")]
+      //[Route("/home")]
       public IActionResult Home()
       {
         return View("Order", new PizzaViewModel());
@@ -35,7 +35,7 @@ namespace PizzaStore.Client.Controllers
           // p.Create(pizzaViewModel);
           // repository.Create(pizzaViewModel);
           //return View("User"); //will look for a view labeled "USER" under the ORDER view folder, will then default to the "shared" views folder
-          return Redirect("/user/index");//http 300-series status //should probably redirect to a user/cart/ or something like that
+          return Redirect("/user/cart");//http 300-series status //should probably redirect to a user/cart/ or something like that
         }
         return View("Order", pizzaViewModel);
       }

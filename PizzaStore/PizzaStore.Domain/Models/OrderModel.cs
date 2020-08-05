@@ -4,8 +4,16 @@ namespace PizzaStore.Domain.Models
 {
   public class OrderModel : AModel
   {
-    public CrustModel Crust { get; set; }
-    public SizeModel Size { get; set; }
-    public List<ToppingModel> Toppings { get; set; }
+    public List<PizzaModel> Pizzas { get; set; }
+
+    public override string ToString()
+    {
+      string PizzaList = "";
+      foreach(PizzaModel p in Pizzas)
+      {
+        PizzaList += $"{p.ToString()}, ";
+      }
+      return PizzaList;
+    }
   }
 }

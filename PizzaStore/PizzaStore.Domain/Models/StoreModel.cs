@@ -4,8 +4,12 @@ namespace PizzaStore.Domain.Models
 {
   public class StoreModel : AModel
   {
-    public CrustModel Crust { get; set; }
-    public SizeModel Size { get; set; }
-    public List<ToppingModel> Toppings { get; set; }
+    public List<OrderModel> Orders { get; set; }
+
+    public override string ToString()
+    {
+      string StoreName = $"{Name}";
+      return StoreName;
+    }
   }
 }

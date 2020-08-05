@@ -8,12 +8,12 @@ namespace PizzaStore.Client.Controllers
 {
     public class UserController : Controller
     {
-      // private readonly PizzaStoreDbContext _db;
+      private readonly PizzaStoreDbContext _db;
 
-      // public UserController(PizzaStoreDbContext dbContext) //constructor dependency injection
-      // {
-      //   _db = dbContext;
-      // }
+      public UserController(PizzaStoreDbContext dbContext) //constructor dependency injection
+      {
+        _db = dbContext;
+      }
 
       // [HttpGet()]
       // public IEnumerable<UserModel> Get()

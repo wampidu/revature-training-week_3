@@ -24,15 +24,24 @@ namespace PizzaStore.Client.Models
     [Required(ErrorMessage = "You must select a size")]
     public string Size { get; set; }
 
-    [Range(2,5)]
+    //[Range(1,5)]
     public List<string> SelectedToppings { get; set; }
+    public int NumberOfToppings { get; set; }
     public bool SelectedTopping { get; set; }
 
     public PizzaViewModel()
     {
       Crusts = new List<CrustModel>(){new CrustModel() {Name = "Chicago"}};
       Sizes = new List<SizeModel>(){new SizeModel(){Name = "Medium"}};
-      Toppings = new List<ToppingModel>(){new ToppingModel(){Name = "Pepperoni"}};
+      Toppings = new List<ToppingModel>()
+      {
+        new ToppingModel(){Name = "Pepperoni"},
+        new ToppingModel(){Name = "Ham"},
+        new ToppingModel(){Name = "Sausage"},
+        new ToppingModel(){Name = "Pineapple"},
+        new ToppingModel(){Name = "Onion"},
+        new ToppingModel(){Name = "Olives"}
+      };
     }
   }
   

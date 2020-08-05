@@ -7,7 +7,10 @@ CSRF* - cross-site request forgery, phishing-->similar to blacklisting
 *@
 
 @* HTML WAY *@
-<form action="/order/placeorder" method="post">
+@using(Html.BeginForm("PlaceOrder", "Order", null, FormMethod.Post))
+{
+//<form action="/order/placeorder" method="post">
+  @Html.AntiForgeryToken();
   @foreach (var crust in @Model.Crusts)
   {
       <input type="radio" name="crust" id="crust" value="@crust.Name" data-val="true" data-val-required="needed"></input>
@@ -31,7 +34,8 @@ CSRF* - cross-site request forgery, phishing-->similar to blacklisting
   }
 
   <button type="submit">place order</button>
-</form>
+//</form>
+}
 
  HTML HELPER WAY
 @using(Html.BeginForm("PlaceOrder", "Order", null, FormMethod.Post))
